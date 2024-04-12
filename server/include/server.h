@@ -21,6 +21,9 @@ typedef struct server_s {
     int fd;
     unsigned short port;
     struct sockaddr_in addr;
+
+    fd_set readfds;
+    fd_set writefds;
 } server_t;
 
 void init(server_t *server, const char *port_string);
