@@ -1,6 +1,16 @@
 #include "server.h"
 
-void bind_server(server_t *server)
+static void listen_server(server_t *server)
+{
+    int result = 0;
+
+    result = listen(server->fd, 0);
+
+    if (result < 0) THROW_ERROR("listen");
+    printf("[*] THE SERVER IS WAITING FOR CLIENTS CONNECTIONS\n");
+}
+
+static void bind_server(server_t *server)
 {
     int result = 0;
 
@@ -20,4 +30,5 @@ void init(server_t *server, const char *port_string)
     server->addr.sin_port = htons(server->port);
     server->addr.sin_family = AF_INET;
     bind_server(server);
+    listen_server(server);
 }
