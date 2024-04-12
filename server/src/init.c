@@ -1,5 +1,15 @@
 #include "server.h"
 
+static void set_socket_options(server_t *server)
+{
+    int result = 0;
+    const int opt = 1;
+
+    result = setsockopt(server->fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
+    if (result < 0) THROW_ERROR("setsockopt(SO_REUSEADDR)");
+    printf("[*] Socket Options are now set correctly\n");
+}
+
 static void listen_server(server_t *server)
 {
     int result = 0;
@@ -31,4 +41,5 @@ void init(server_t *server, const char *port_string)
     server->addr.sin_family = AF_INET;
     bind_server(server);
     listen_server(server);
+    set_socket_options(server);
 }
