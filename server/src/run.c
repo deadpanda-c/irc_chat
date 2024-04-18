@@ -39,7 +39,6 @@ static void set_max_fd(server_t *server, int *max_fd)
             FD_SET(server->clients[i].fd, &server->readfds);
         if (server->clients[i].fd > *max_fd) {
             *max_fd = server->clients[i].fd;
-            INFO_LOG("New max fd discover !");
         }
     }
 }
@@ -56,7 +55,6 @@ void run(server_t *server)
         SELECT_FD(max_fd + 1, &server->readfds);
 
         accept_new_connection(server);
-
         parse_client_entry(server);
     }
 }

@@ -31,6 +31,7 @@ void parse_client_entry(server_t *server)
                 server->nb_clients--;
                 continue;
             }
+            INFO_LOG(client_buffer);
         }
         if (client_buffer) {
             free(client_buffer);
