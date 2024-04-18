@@ -4,7 +4,7 @@ SRC	=	$(shell find . -name "*.c")
 
 OBJ	=	$(SRC:.c=.o)
 
-NAME	=	../myteams_server
+NAME	=	../irc_server
 
 CFLAGS	=	-W -Wall -Wextra -Werror -Iinclude -I../libs -g3
 
@@ -13,7 +13,7 @@ LDFLAGS	=	-L../libs/myteams -lmyteams
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	$(CC) -o $(NAME) $(OBJ) $(CFLAGS)
+	$(CC) -o $(NAME) $(OBJ) $(LDFLAGS) $(CFLAGS)
 
 clean:
 	find . -name "*.o" -delete
