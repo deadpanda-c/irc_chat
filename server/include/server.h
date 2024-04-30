@@ -28,6 +28,8 @@
     }\
 }
 
+#define UUID_LENGTH 37
+
 #define MAX_CLIENTS 1024
 #define MAX_MSG_LENGTH 1024
 #define WELCOME_MSG "Welcome to this IRC Chat !\n"
@@ -74,3 +76,5 @@ void disconnect_client(int *client_fd, fd_set *readfds);
 char *trim(char *src, char *delim);
 
 int log_client_in(server_t *server, client_t *client);
+
+char *generate_uuid(void);

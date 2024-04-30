@@ -8,7 +8,7 @@ NAME	=	../irc_server
 
 CFLAGS	=	-W -Wall -Wextra -Werror -Iinclude -I../libs -g3
 
-LDFLAGS	=	-L../libs/myteams -lmyteams
+LDFLAGS	=	-L../libs/myteams -lmyteams -luuid
 
 all:	$(NAME)
 
