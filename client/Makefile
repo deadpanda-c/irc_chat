@@ -16,7 +16,7 @@ $(NAME):	$(OBJ)
 	$(CC) -o $(NAME) $(OBJ) $(LDFLAGS) $(CFLAGS)
 
 clean:
-	find . -name "*.o"
+	find . -name "*.o" -delete
 
 fclean:	clean
 	rm -rf $(NAME)

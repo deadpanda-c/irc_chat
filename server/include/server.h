@@ -32,8 +32,18 @@
 #define MAX_MSG_LENGTH 1024
 #define WELCOME_MSG "Welcome to this IRC Chat !\n"
 
+#define LOGIN_SUCCESSFUL "200 User successfully logged in\n"
+#define ALREADY_CONNECTED "401 User already connected\n"
+
+#define SYNTAX_ERROR "100 Syntax Error\n"
+
+#define LOGIN "LOGIN"
+
 typedef struct client_s {
     int fd;
+    char *username;
+    char *uuid;
+    char *buffer;
 } client_t;
 
 typedef struct server_s {
@@ -49,9 +59,18 @@ typedef struct server_s {
     int nb_clients;
 } server_t;
 
+typedef struct cmd_s {
+    char *cmd;
+    int (*func)(server_t *server, client_t *client);
+} cmd_t;
+
 void init(server_t *server, const char *port_string);
 void run(server_t *server);
 void close_server(server_t *server);
 void send_to_fd(int fd, const char *msg);
 void parse_client_entry(server_t *server);
 void disconnect_client(int *client_fd, fd_set *readfds);
+
+char *trim(char *src, char *delim);
+
+int log_client_in(server_t *server, client_t *client);

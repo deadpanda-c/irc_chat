@@ -38,6 +38,9 @@ static void init_clients(client_t **clients)
 
     for (int i = 0; i < MAX_CLIENTS; i++) {
         (*clients)[i].fd = 0;
+        (*clients)[i].username = NULL;
+        (*clients)[i].uuid = NULL;
+        (*clients)[i].buffer = NULL;
     }
 }
 
